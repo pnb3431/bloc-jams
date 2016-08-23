@@ -28,6 +28,21 @@ var albumMarconi = {
      ]
  };
  
+ var albumFoo = {
+     title: 'One by One',
+     artist: 'Foo Fighters',
+     label: 'RCA',
+     year: '2002',
+     albumArtUrl: 'assets/images/album_covers/foo.jpg',
+     songs: [
+         { title: 'All My Life', duration: '4:23' },
+         { title: 'Low', duration: '4:28' },
+         { title: 'Have it All', duration: '4:58' },
+         { title: 'Times Like These', duration: '4:26'},
+         { title: 'Disenchanted Lullaby', duration: '4:33'}
+     ]
+ };
+ 
 var createSongRow = function(songNumber, songName, songLength) {
      var template =
         '<tr class="album-view-song-item">'
@@ -39,14 +54,16 @@ var createSongRow = function(songNumber, songName, songLength) {
  
      return template;
  };
- 
+    var albumTitle = document.getElementsByClassName('album-view-title')[0];
+    var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+    var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+    var albumImage = document.getElementsByClassName('album-cover-art')[0];
+    var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+  
+  
   var setCurrentAlbum = function(album) {
 
-     var albumTitle = document.getElementsByClassName('album-view-title')[0];
-     var albumArtist = document.getElementsByClassName('album-view-artist')[0];
-     var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
-     var albumImage = document.getElementsByClassName('album-cover-art')[0];
-     var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+    
  
 
      albumTitle.firstChild.nodeValue = album.title;
@@ -63,6 +80,18 @@ var createSongRow = function(songNumber, songName, songLength) {
      }
  };
  
+ 
  window.onload = function() {
      setCurrentAlbum(albumPicasso);
+     var albumsArray = [albumPicasso, albumMarconi, albumFoo];
+     var index = 1;
+     
+     albumImage.addEventListener("click", function(event) {
+        setCurrentAlbum(albumsArray[index]);
+        index++;
+        if (index == albumsArray.length) {
+            index = 0; 
+        }
+         
+     });
  };
