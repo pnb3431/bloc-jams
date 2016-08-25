@@ -62,16 +62,24 @@ var createSongRow = function(songNumber, songName, songLength) {
          albumSongList.innerHTML += createSongRow(i + 1, album.songs[i].title, album.songs[i].duration);
      }
  };
- 
- var findParentByClassName = function(element, targetClass) {
-    if (element) {
+var child = document.getElementsByClassName('album-view-title')[0];
+
+
+var findParentByClassName = function(element, targetClass) {
+    
+    if(element) {
         var currentParent = element.parentElement;
-        while (currentParent.className != targetClass && currentParent.className !== null) {
+        while(currentParent.className != targetClass && currentParent.className !== null) {
             currentParent = currentParent.parentElement;
         }
         return currentParent;
+    } else if(element.parentNode === null) {
+        alert("No parent found");
+    } else if(element.className != targetClass) {
+        alert("No parent found with that class name");
     }
 };
+
 var getSongItem = function(element){
     switch (element.className) {
         case 'album-song-button':
