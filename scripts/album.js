@@ -83,6 +83,8 @@ var getSongItem = function(element){
             return findParentByClassName(element, 'album-view-song-item').querySelector('.song-item-number');
         case 'song-item-number':
             return element;
+        case 'album-view-song-item':
+            return element.querySelector('.song-item-number');
         default:
             return;
     }
@@ -135,7 +137,7 @@ var getSongItem = function(element){
             var songItem = getSongItem(event.target);
             var songItemNumber = songItem.getAttribute('data-song-number');
  
-             
+         
              if (songItemNumber !== currentlyPlayingSong) {
                  songItem.innerHTML = songItemNumber;
              }
